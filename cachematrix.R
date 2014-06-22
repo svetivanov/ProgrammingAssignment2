@@ -75,7 +75,6 @@ cacheSolve <- function(m4trix, ...){			# Here I begin defining the Second main
 							# working memory.
 	inverse				        	# Finally we return the inverse.
 }
-
 # The output should always return the inverse of the matrix that has been processed by 
 # 'makeCacheMatrix()'. In case the "special matrix" has been previously processed then it will 
 # remember it from the cache and the output should inform you by saying "getting cached data"
