@@ -5,10 +5,7 @@
 # cached value for the inverse.
 
 # First Function: 'makeCacheMatrix()'
-						     	# Initially I used m4trix instead of x. I 
-						     	# I am not versed in GitHub and I am too
-						     	# lazy to rework all of my comments.
-						     	# x (m4trix) is the input variable and it
+makeCacheMatrix <- function(m4trix = matrix()){      	# Here m4trix is the input variable and it
 							# has to be a matrix. Note that the matrix 
 							# must not be singular so that an inverse 
 						        # can exist. If it is not 'cacheSolve()' 
@@ -18,10 +15,10 @@
 						        # local variable to be an empty matrix.
 	set <- function(y){				# Here I define the global values for m4trix 
 							# and inverse.
-		x <<- y
+		m4trix <<- y
 		inverse <<- NULL
 	}
-	get <- function() x		        	# This just defines the no input function 
+	get <- function() m4trix		        # This just defines the no input function 
 							# 'get()' that returns m4trix on call
 	setinverse <- function(solve) inverse <<- solve	# Here I define the 'setinverse()' function
 							# that globally gives inverse the value of 
@@ -47,14 +44,14 @@
 }
 
 # Second Function: 'cacheSolve()'
-							# Here I begin defining the Second main 
+cacheSolve <- function(m4trix, ...){			# Here I begin defining the Second main 
 							# function, 'cacheSolve()', that takes the
 							# a argument, 'm4trix' but also inherits the
 							# arguments of its child functions. Note: I 
 							# assume that the m4trix argument here is a
 							# matrix that has been processed through 
 							# 'makeCacheMatrix()'.
-	inverse <- x$getinverse()			# Here I extract the inverse from the cached
+	inverse <- m4trix$getinverse()			# Here I extract the inverse from the cached
 							# matrix 
 	if (!is.null(inverse)){				# I check if the inverse has already been 
 		message("getting cached data")		# computed. If the memory that stores the
@@ -68,11 +65,11 @@
 							# been previously passed the function will
 							# return the previously saved inverse and 
 							# then stop.
-	data <- x$get() 				# If, however, the inverse hasn't been 
+	data <- m4trix$get() 				# If, however, the inverse hasn't been 
 							# calculated before we access the initial 
 							# form of the "special matrix" and then
 	inverse <- solve(data, ...)			# calculate the inverse using 'solve()'
-	x$setinverse(inverse)			# We then save the value of the inverse 
+	m4trix$setinverse(inverse)			# We then save the value of the inverse 
 							# attribute for the already processed 
 							# "special matrix" and cache it in the 
 							# working memory.
